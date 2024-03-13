@@ -104,7 +104,7 @@ foreach (var race in races)
         ReferenceCategoriesRefs.TryAdd(soundsID, new());
         var parent = ReferenceCategoriesRefs[soundsID];
 
-        foreach (var propertyName in new[] { "hair colors", "hairs", "heads female", "heads male", "animation files" })
+        foreach (var propertyName in new[] { "hair colors", "hairs"/*, "heads female", "heads male"*/, "animation files" })
         {
             if (!race.ReferenceCategories.ContainsKey(propertyName)) continue;
 
