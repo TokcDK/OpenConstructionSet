@@ -69,17 +69,21 @@ public class ContextBuilder : IContextBuilder
 
         if (options.Installation.TryFind(modFileName, out var activeMod))
         {
-            await ReadItemsAsync(activeMod, activeItems).ConfigureAwait(false);
-
-            if (header is null)
+            try
             {
-                header = await activeMod.ReadHeaderAsync().ConfigureAwait(false);
-            }
+                await ReadItemsAsync(activeMod, activeItems).ConfigureAwait(false);
 
-            if (info is null)
-            {
-                info = await activeMod.ReadInfoAsync().ConfigureAwait(false);
+                if (header is null)
+                {
+                    header = await activeMod.ReadHeaderAsync().ConfigureAwait(false);
+                }
+
+                if (info is null)
+                {
+                    info = await activeMod.ReadInfoAsync().ConfigureAwait(false);
+                }
             }
+            catch { } // in case of broken patch mod file
         }
 
         return new ModContext(baseItems, activeItems.Values, options.Installation, modFileName, lastId, header, info);

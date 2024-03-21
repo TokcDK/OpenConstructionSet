@@ -68,13 +68,14 @@ public class SteamLocator : IInstallationLocator
         {
             var path = Path.Combine(folder, "steamapps", "libraryfolders.vdf");
 
+            if (!File.Exists(path)) return Enumerable.Empty<string>();
+
             // [whitespace] "[number]" [whitespace] "[library path]"
             const string pattern = "^\\s+\"\\d+\"\\s+\"(.+)\"";
 
             var libraries = new List<string> { folder };
 
             IEnumerable<string> lines;
-
             try
             {
                 lines = File.ReadLines(path);
