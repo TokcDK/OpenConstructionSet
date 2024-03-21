@@ -149,6 +149,7 @@ public class ContextBuilder : IContextBuilder
 
                     items[stringId] = item;
                 }
+                else item.Name = name; // set name from most priority record value
 
                 var dictionaryCount = reader.ReadInt();
 
