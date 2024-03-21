@@ -382,7 +382,7 @@ foreach (var item in items)
 }
 
 // Bigger backpacks
-var backpacks = context.Items.OfType(ItemType.Container);
+var backpacks = context.Items.OfType(ItemType.Container).ToArray();
 HashSet<string> changed = new();
 foreach (var item in backpacks)
 {
@@ -417,47 +417,33 @@ foreach (var item in backpacks)
         {
             if (width == 3)
             {
-                item.Values["storage size height"] = 5;
-                item.Values["storage size width"] = 5;
+                SetBackpackSquareSizeTo(5, item);
             }
             else if (width == 4)
             {
-                item.Values["storage size height"] = 6;
-                item.Values["storage size width"] = 6;
+                SetBackpackSquareSizeTo(6, item);
             }
             else if (width == 5)
             {
-                item.Values["storage size height"] = 7;
-                item.Values["storage size width"] = 7;
+                SetBackpackSquareSizeTo(7, item);
             }
             else if (width == 6)
             {
-                item.Values["storage size height"] = 8;
-                item.Values["storage size width"] = 8;
+                SetBackpackSquareSizeTo(8, item);
             }
         }
     }
     else if (width == 8)
     {
-        item.Values["storage size height"] = 12;
-        item.Values["storage size width"] = 12;
+        SetBackpackSquareSizeTo(12, item);
     }
     else if (width == 10)
     {
-        item.Values["storage size height"] = 16;
-        item.Values["storage size width"] = 16;
+        SetBackpackSquareSizeTo(16, item);
     }
     else if (width == 12)
     {
-        if (width < height)
-        {
-            item.Values["storage size width"] = item.Values["storage size height"];
-        }
-        else
-        {
-            item.Values["storage size width"] = 20;
-            item.Values["storage size height"] = 20;
-        }
+        ResizeWidthToHeightOr(item, width, height, 20);
     }
     else if (width > 30)
     {
@@ -465,29 +451,30 @@ foreach (var item in backpacks)
     }
     else if (width > 20)
     {
-        if (width < height)
-        {
-            item.Values["storage size width"] = item.Values["storage size height"];
-        }
-        else
-        {
-            item.Values["storage size width"] = 30;
-            item.Values["storage size height"] = 30;
-        }
+        ResizeWidthToHeightOr(item, width, height, 30);
     }
     else if (width > 12)
     {
-        if (width < height)
-        {
-            item.Values["storage size width"] = item.Values["storage size height"];
-        }
-        else
-        {
-            item.Values["storage size width"] = 24;
-            item.Values["storage size height"] = 24;
-        }
+        ResizeWidthToHeightOr(item, width, height, 24);
     }
+}
 
+void SetBackpackSquareSizeTo(int size, ModItem item)
+{
+    item.Values["storage size height"] = size;
+    item.Values["storage size width"] = size;
+}
+
+void ResizeWidthToHeightOr(ModItem item, int width, int height, int size)
+{
+    if (width < height)
+    {
+        item.Values["storage size width"] = height;
+    }
+    else
+    {
+        SetBackpackSquareSizeTo(size, item);
+    }
 }
 
 Console.Write("Saving... ");
