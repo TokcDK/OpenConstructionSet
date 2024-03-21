@@ -401,9 +401,10 @@ foreach (var item in backpacks)
     //item.Values["combat speed mult"] = (cspeed = ((float)(cspeed + 0.5)));
     //if (cspeed > 1) item.Values["combat speed mult"] = (float)(1.0 + ((cspeed - 1.0) / 3));
 
-    item.Values["combat skill bonus"] = 0;
-    item.Values["combat speed mult"] = (float)1.0;
-    item.Values["stealth mult"] = (float)1.0;
+    // reset skill mods
+    //item.Values["combat skill bonus"] = 0;
+    //item.Values["combat speed mult"] = (float)1.0;
+    //item.Values["stealth mult"] = (float)1.0;
 
     var height = (int)item.Values["storage size height"];
     var width = (int)item.Values["storage size width"];
