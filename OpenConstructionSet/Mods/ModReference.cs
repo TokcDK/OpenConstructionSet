@@ -11,7 +11,7 @@ public class ModReference : IReference, IKeyedItem<string>
     /// Creates a <see cref="ModReference"/> from another.
     /// </summary>
     /// <param name="reference">The <see cref="IReference"/> to copy.</param>
-    internal ModReference(IReference reference)
+    public ModReference(IReference reference)
     {
         TargetId = reference.TargetId;
         Value0 = reference.Value0;
@@ -26,7 +26,7 @@ public class ModReference : IReference, IKeyedItem<string>
     /// <param name="value0">The first value.</param>
     /// <param name="value1">The second value.</param>
     /// <param name="value2">The third value.</param>
-    internal ModReference(string targetId, int value0 = 0, int value1 = 0, int value2 = 0)
+    public ModReference(string targetId, int value0 = 0, int value1 = 0, int value2 = 0)
     {
         TargetId = targetId;
         Value0 = value0;
