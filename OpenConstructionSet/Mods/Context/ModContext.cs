@@ -59,6 +59,19 @@ public class ModContext : IModContext
 
         return item;
     }
+    /// <inheritdoc/>
+    public virtual ModItem NewItem(ModItem modItem)
+    {
+        LastId++;
+
+        var stringId = $"{LastId}-{ModName}";
+
+        var item = modItem.DeepClone(stringId);
+
+        Items.Add(item);
+
+        return item;
+    }
 
     /// <inheritdoc/>
     public virtual Task SaveAsync() => SaveAsync(installation.Mods.GetModPath(ModName));

@@ -42,6 +42,15 @@ public interface IModContext
     ModItem NewItem(ItemType type, string name);
 
     /// <summary>
+    /// Creates a new <see cref="ModItem"/>.
+    /// Generates the <see cref="IItem.StringId"/> and increases <see cref="LastId"/> value.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    ModItem NewItem(ModItem modItem);
+
+    /// <summary>
     /// Saves to the Mods folder with using <see cref="ModName"/> as the name.
     /// </summary>
     /// <returns>An awaitable task.</returns>

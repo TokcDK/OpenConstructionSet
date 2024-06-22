@@ -17,6 +17,11 @@ public class ModReference : IReference, IKeyedItem<string>
         Value0 = reference.Value0;
         Value1 = reference.Value1;
         Value2 = reference.Value2;
+
+        if(reference is ModReference modReference && modReference.Target != null)
+        {
+            _target = modReference.Target;
+        }
     }
 
     /// <summary>
@@ -41,7 +46,8 @@ public class ModReference : IReference, IKeyedItem<string>
     /// The target of this <see cref="ModReference"/>.
     /// Attempts to retrieve the <see cref="ModReference"/> from the parent <see cref="IModContext"/>.
     /// </summary>
-    public ModItem? Target => parent?.Owner?.Items.TryGetValue(TargetId, out var target) == true ? target : null;
+    public ModItem? Target => _target ?? (parent?.Owner?.Items.TryGetValue(TargetId, out var target) == true ? target : null);
+    private ModItem? _target = null;
 
     /// <inheritdoc/>
     public string TargetId { get; }

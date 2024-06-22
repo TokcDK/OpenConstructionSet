@@ -114,9 +114,9 @@ public class ModItem : IItem, IKeyedItem<string>
     /// Performs a deep clone of this object.
     /// </summary>
     /// <returns>A deep clone of this object.</returns>
-    public ModItem DeepClone()
+    public ModItem DeepClone(string? stringId = null)
     {
-        return new ModItem(Type, Name, StringId, Values, ReferenceCategories.Select(c => c.DeepClone()),
+        return new ModItem(Type, Name, stringId ?? StringId, Values, ReferenceCategories.Select(c => c.DeepClone()),
             Instances.Select(i => i.DeepClone()));
     }
 
