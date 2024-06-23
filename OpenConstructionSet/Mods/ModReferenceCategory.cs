@@ -14,7 +14,7 @@ public class ModReferenceCategory : IReferenceCategory, IKeyedItem<string>
     /// Creates a new <see cref="ModReferenceCategory"/> from another.
     /// </summary>
     /// <param name="category">The <see cref="IReferenceCategory"/> to copy.</param>
-    internal ModReferenceCategory(IReferenceCategory category) : this(category.Name, (IEnumerable<IReference>)category)
+    public ModReferenceCategory(IReferenceCategory category) : this(category.Name, (IEnumerable<IReference>)category)
     {
     }
 
@@ -22,7 +22,7 @@ public class ModReferenceCategory : IReferenceCategory, IKeyedItem<string>
     /// Creates a new <see cref="ModReferenceCategory"/> with the given name.
     /// </summary>
     /// <param name="name">The name of the <see cref="ModReferenceCategory"/>.</param>
-    internal ModReferenceCategory(string name)
+    public ModReferenceCategory(string name)
     {
         Name = name;
         References = new(this);
@@ -34,7 +34,7 @@ public class ModReferenceCategory : IReferenceCategory, IKeyedItem<string>
     /// </summary>
     /// <param name="name">The name of the <see cref="ModReferenceCategory"/>.</param>
     /// <param name="collection">A collection of <see cref="Reference"/> s to add to the <see cref="ModReferenceCategory"/>.</param>
-    internal ModReferenceCategory(string name, IEnumerable<IReference> collection)
+    public ModReferenceCategory(string name, IEnumerable<IReference> collection)
     {
         Name = name;
 
