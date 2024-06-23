@@ -48,7 +48,7 @@ public class ModItemCollection : KeyedItemCollection<string, ModItem>
         {
             if (!baseItems.TryGetValue(item.Key, out var baseItem))
             {
-                yield return new Item(item.Type, 0, item.Name, item.StringId, ItemChangeType.New);
+                yield return new Item(item.Type, 0, item.Name, item.StringId, ItemChangeType.New, item.Values, item.ReferenceCategories, item.Instances);
             }
             else if (item.TryGetChanges(baseItem, out var changes))
             {
