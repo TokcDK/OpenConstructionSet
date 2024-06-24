@@ -123,7 +123,8 @@ public class ContextBuilder : IContextBuilder
 
             reader.ReadHeader(dataFileType);
 
-            lastId = Math.Max(lastId, reader.ReadInt());
+            var modLastId = reader.ReadInt();
+            if (file.Filename==modFileName) lastId = Math.Max(lastId, modLastId); // read lastid only for patch mod
 
             var itemCount = reader.ReadInt();
 
