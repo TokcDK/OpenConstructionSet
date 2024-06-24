@@ -76,10 +76,10 @@ public sealed class OcsWriter : IDisposable
         Write(value.ReferenceCategories.Count);
         foreach (var category in value.ReferenceCategories)
         {
-            if (category.References.Count == 0)
-            {
-                continue;
-            }
+            //if (category.References.Count == 0) // commented because mod file will be corrupted if category is exists but have no items
+            //{
+            //    continue;
+            //}
 
             Write(category.Name);
 
