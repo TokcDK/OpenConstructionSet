@@ -108,6 +108,8 @@ public class ContextBuilder : IContextBuilder
 
         async Task ReadItemsAsync(IModFile file, IDictionary<string, ModItem> items)
         {
+            if(file.Filename == modFileName) { return; } // skip patch file from reading into context
+
             using var reader = new OcsReader(await File.ReadAllBytesAsync(file.Path).ConfigureAwait(false));
 
             var dataFileType = reader.ReadInt();
@@ -124,7 +126,7 @@ public class ContextBuilder : IContextBuilder
             reader.ReadHeader(dataFileType);
 
             var modLastId = reader.ReadInt();
-            if (file.Filename==modFileName) lastId = Math.Max(lastId, modLastId); // read lastid only for patch mod
+            //if (file.Filename==modFileName) lastId = Math.Max(lastId, modLastId); // read lastid only for patch mod
 
             var itemCount = reader.ReadInt();
 
