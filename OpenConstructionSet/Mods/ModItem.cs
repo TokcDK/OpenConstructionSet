@@ -124,7 +124,7 @@ public class ModItem : IItem, IKeyedItem<string>
     /// Determines if this <see cref="ModItem"/> is marked as deleted.
     /// </summary>
     /// <returns><c>true</c> if this <see cref="ModItem"/> is deleted; otherwise, <c>false</c>.</returns>
-    public bool IsDeleted() => Values.TryGetValue("DELETED", out var value) && value is bool deleted && deleted;
+    public bool IsDeleted() => Values.TryGetValue("REMOVED", out var value) && value is bool deleted && deleted;
 
     /// <summary>
     /// Attempts to get an <see cref="Item"/> representing the changes between this and the provided <c>baseItem</c>.
